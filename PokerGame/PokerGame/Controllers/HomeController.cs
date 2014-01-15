@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PokerGame.Library;
 
 namespace PokerGame.Controllers
 {
@@ -27,6 +28,32 @@ namespace PokerGame.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        private Game CreateGame()
+        {
+            var players = new List<Player>
+            {
+                new Player("Marc"),
+                new Player("Dave"),
+                new Player("Lee"),
+                new Player("Oli")
+            };
+
+            var deck = CreateDeck();
+
+            return new Game(players, deck);
+        }
+
+        private List<Card> CreateDeck()
+        {
+
+            var suits = Enum.GetValues(typeof (Enums.Suit)).Cast<Enums.Suit>();
+            var cardValues = Enum.GetValues(typeof(Enums.CardValue)).Cast<Enums.CardValue>();
+
+            var deck = (from cardValue in cardValues from suit in suits select new Card(suit, cardValue)).ToList();
+
+            return deck;
         }
     }
 }

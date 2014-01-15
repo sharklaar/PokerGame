@@ -1,54 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PokerGame;
-using PokerGame.Controllers;
+﻿using System.Collections.Generic;
+using NUnit.Framework;
+using PokerGame.Library;
 
 namespace PokerGame.Tests.Controllers
 {
-    [TestClass]
+    [TestFixture]
     public class HomeControllerTest
     {
-        [TestMethod]
-        public void Index()
+        [TestFixture]
+        public class TheHomeController
         {
-            // Arrange
-            HomeController controller = new HomeController();
+            private Game _game;
 
-            // Act
-            ViewResult result = controller.Index() as ViewResult;
-
-            // Assert
-            Assert.AreEqual("Modify this template to jump-start your ASP.NET MVC application.", result.ViewBag.Message);
+            [Test]
+            public void The_dealer_will_deal_two_cards_to_each_player()
+            {
+                // Arrange
+                _game = CreateGame();
+            }
         }
 
-        [TestMethod]
-        public void About()
+        private static Game CreateGame()
         {
-            // Arrange
-            HomeController controller = new HomeController();
+            var players = new List<Player>
+            {
+                new Player("Marc"),
+                new Player("Dave"),
+                new Player("Lee"),
+                new Player("Oli")
+            };
 
-            // Act
-            ViewResult result = controller.About() as ViewResult;
-
-            // Assert
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-        public void Contact()
-        {
-            // Arrange
-            HomeController controller = new HomeController();
-
-            // Act
-            ViewResult result = controller.Contact() as ViewResult;
-
-            // Assert
-            Assert.IsNotNull(result);
+            return new Game(players);
         }
     }
 }
