@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerGame", "PokerGame\PokerGame.csproj", "{ED99AA6C-400E-40CC-804F-D61A3B39A7AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerGame.Tests", "PokerGame.Tests\PokerGame.Tests.csproj", "{9E1789EC-CFE8-49B1-9DF6-9FEF63EE07FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED99AA6C-400E-40CC-804F-D61A3B39A7AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED99AA6C-400E-40CC-804F-D61A3B39A7AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED99AA6C-400E-40CC-804F-D61A3B39A7AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED99AA6C-400E-40CC-804F-D61A3B39A7AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E1789EC-CFE8-49B1-9DF6-9FEF63EE07FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E1789EC-CFE8-49B1-9DF6-9FEF63EE07FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E1789EC-CFE8-49B1-9DF6-9FEF63EE07FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E1789EC-CFE8-49B1-9DF6-9FEF63EE07FF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
