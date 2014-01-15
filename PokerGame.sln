@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerGame", "PokerGame\PokerGame.csproj", "{6006FF96-0BDB-4C31-B7DB-E7DA3FDF161C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerGame.Tests", "PokerGame.Tests\PokerGame.Tests.csproj", "{FAEBBEE9-AAE5-4410-A74D-3007EC30EFB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameObjects", "GameObjects\GameObjects.csproj", "{6FD427F0-01D1-4EEB-90DF-6A9B32E68352}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6006FF96-0BDB-4C31-B7DB-E7DA3FDF161C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6006FF96-0BDB-4C31-B7DB-E7DA3FDF161C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6006FF96-0BDB-4C31-B7DB-E7DA3FDF161C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6006FF96-0BDB-4C31-B7DB-E7DA3FDF161C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAEBBEE9-AAE5-4410-A74D-3007EC30EFB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAEBBEE9-AAE5-4410-A74D-3007EC30EFB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAEBBEE9-AAE5-4410-A74D-3007EC30EFB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAEBBEE9-AAE5-4410-A74D-3007EC30EFB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FD427F0-01D1-4EEB-90DF-6A9B32E68352}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FD427F0-01D1-4EEB-90DF-6A9B32E68352}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FD427F0-01D1-4EEB-90DF-6A9B32E68352}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FD427F0-01D1-4EEB-90DF-6A9B32E68352}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
