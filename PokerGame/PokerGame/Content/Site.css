@@ -1,4 +1,14 @@
-﻿html {
+﻿.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+html {
     background-color: #e2e2e2;
     margin: 0;
     padding: 0;
@@ -213,14 +223,19 @@ ul#menu {
 }
 
     .featured .content-wrapper {
-        background-color: #7ac0da;
-        background-image: -ms-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: -o-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #7ac0da), color-stop(1, #a4d4e6));
-        background-image: -webkit-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        /*background: #2cba25; /* Old browsers */
+        /*background: -moz-linear-gradient(-45deg,  #2cba25 0%, #206012 29%, #427512 66%, #2cba25 100%); /* FF3.6+ */
+        /*background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#2cba25), color-stop(29%,#206012), color-stop(66%,#427512), color-stop(100%,#2cba25)); /* Chrome,Safari4+ */
+        /*background: -webkit-linear-gradient(-45deg,  #2cba25 0%,#206012 29%,#427512 66%,#2cba25 100%); /* Chrome10+,Safari5.1+ */
+        /*background: -o-linear-gradient(-45deg,  #2cba25 0%,#206012 29%,#427512 66%,#2cba25 100%); /* Opera 11.10+ */
+        /*background: -ms-linear-gradient(-45deg,  #2cba25 0%,#206012 29%,#427512 66%,#2cba25 100%); /* IE10+ */
+        /*background: linear-gradient(135deg,  #2cba25 0%,#206012 29%,#427512 66%,#2cba25 100%); /* W3C */
+        /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2cba25', endColorstr='#2cba25',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+        background: white;
         color: #3e5667;
         padding: 20px 40px 30px 40px;
+        border-radius: 50px;
     }
 
         .featured hgroup.title h1, .featured hgroup.title h2 {
@@ -753,4 +768,102 @@ tr.pager td {
         footer p {
             margin: 0;
         }
+}
+
+.players {
+    width: 680px;
+    margin: 0 auto;    
+}
+
+.players li {
+    float: left;
+    margin: 0 10px;
+}
+
+.card {
+    background: url(themes/base/images/cards.jpg) no-repeat;
+    width: 73px;
+    height: 97px;
+    display: inline-block;
+}
+
+.community-cards {
+    width: 381px;
+    margin: 0 auto;
+}
+
+.community-cards li {
+    display: inline;
+}
+
+.clubs {
+    background-position-y: -1px;
+}
+
+.spades {
+    background-position-y: -99px;
+}
+
+.hearts {
+    background-position-y: -197px;
+}
+
+.diamonds {
+    background-position-y: -295px;
+}
+
+.Ace {
+    background-position-x: -1px;
+}
+
+.deuce {
+    background-position-x: -74px;
+}
+
+.three {
+    background-position-x: -147px;
+}
+
+.four {
+    background-position-x: -220px;
+}
+
+.five {
+    background-position-x: -293px;
+}
+
+.six {
+    background-position-x: -366px;
+}
+
+.seven {
+    background-position-x: -439px;
+}
+
+.eight {
+    background-position-x: -512px;
+}
+
+.nine {
+    background-position-x: -585px;
+}
+
+.ten {
+    background-position-x: -658px;
+}
+
+.jack {
+    background-position-x: -731px;
+}
+
+.queen {
+    background-position-x: -804px;
+}
+
+.king {
+    background-position-x: -877px;
+}
+
+ul li {
+    list-style-type: none;
 }
