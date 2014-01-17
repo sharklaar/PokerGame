@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 
 namespace PokerGame.Library
@@ -10,6 +11,7 @@ namespace PokerGame.Library
         public List<Card> Deck { get; set; } 
         public List<Player> Players { get; set; } 
         public List<Card> CommunityCards { get; set; } 
+        public string WinnerText { get; set; }
 
         public Game(List<Player> players, List<Card> deck)
         {
@@ -41,6 +43,39 @@ namespace PokerGame.Library
             foreach (var player in Players)
             {
                 player.BestFinalHand = GetFinalHand(player);
+            }
+
+            var playersInOrderOfHandRank = Players.OrderBy(x => x.BestFinalHand.Rank).ToArray();
+
+            var winners = new List<Player> {playersInOrderOfHandRank.First()};
+
+            for (var i = 0; i < playersInOrderOfHandRank.Count() - 1; i++)
+            {
+                var diff = playersInOrderOfHandRank[i + 1].BestFinalHand.Rank - playersInOrderOfHandRank[i].BestFinalHand.Rank;
+
+                if (diff == 1)
+                {
+                    winners.Add(playersInOrderOfHandRank[i+1]);
+                }
+                else
+                {
+                }
+            }
+
+            if (winners.Count == 1)
+            {
+                WinnerText = winners[0].Name + " is the winner with " + winners[0].BestFinalHand.HandDescription;
+            }
+            else
+            {
+                var winnerString = string.Empty;
+
+                foreach (var player in winners)
+                {
+                    winnerString = winnerString + ", " + player.Name;
+                }
+
+                WinnerText = winnerString + " share the pot with " + winners[0].BestFinalHand.HandDescription;
             }
         }
 

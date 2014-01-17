@@ -26,26 +26,27 @@ namespace PokerGame.Library
     {
         public int HighestCard { get; set; }
         public string Suit { get; set; }
-        public const int Rank = 1;
         
         public StraightFlush(int highestCard, string suit)
         {
             HighestCard = highestCard;
             Suit = suit;
             HandDescription = "Straight flush, " + suit + ", " + highestCard + " high";
+            Rank = 1;
         }
     }
 
     public class FourOfAKind : Hand
     {
         public string HighCard { get; set; }
-        public const int Rank = 2;
 
         public FourOfAKind(string highCard)
         {
             HighCard = highCard;
 
             HandDescription = "Four of a kind, " + highCard;
+
+            Rank = 2;
         }
     }
 
@@ -53,7 +54,6 @@ namespace PokerGame.Library
     {
         public string Three { get; set; }
         public string Two { get; set; }
-        public const int Rank = 3;
 
         public FullHouse(string threeCard, string twoCard)
         {
@@ -61,6 +61,8 @@ namespace PokerGame.Library
             Three = threeCard;
 
             HandDescription = "Full house, " + threeCard + "s over " + twoCard + "s";
+
+            Rank = 3;
         }
     }
 
@@ -68,7 +70,6 @@ namespace PokerGame.Library
     {
         public Card HighestCard { get; set; }
         public string Suit { get; set; }
-        public const int Rank = 4;
 
         public Flush(Card highestCard, string suit)
         {
@@ -76,31 +77,35 @@ namespace PokerGame.Library
             Suit = suit;
 
             HandDescription = "Flush, " + highestCard.Value + " high, " + suit;
+
+            Rank = 4;
         }
     }
 
     public class Straight : Hand
     {
         public int HighestCard { get; set; }
-        public const int Rank = 5;
 
         public Straight(int highestCard)
         {
             HighestCard = highestCard;
             HandDescription = "Straight, " + highestCard + " high";
+
+            Rank = 5;
         }
     }
 
     public class ThreeOfAKind : Hand
     {
         public string HighestCard { get; set; }
-        public const int Rank = 6;
 
         public ThreeOfAKind(string highestCard)
         {
             HighestCard = highestCard;
 
             HandDescription = "Three of a kind, " + highestCard + "s";
+
+            Rank = 6;
         }
     }
 
@@ -108,7 +113,6 @@ namespace PokerGame.Library
     {
         public string FirstPair { get; set; }
         public string SecondPair { get; set; }
-        public const int Rank = 7;
 
         public TwoPair(string firstPair, string secondPair)
         {
@@ -116,32 +120,36 @@ namespace PokerGame.Library
             SecondPair = secondPair;
 
             HandDescription = "Two pair, " + firstPair + "s and " + secondPair + "s";
+
+            Rank = 7;
         }
     }
 
     public class Pair : Hand
     {
         public string HighestCard { get; set; }
-        public const int Rank = 8;
 
         public Pair(string highestCard)
         {
             HighestCard = highestCard;
 
             HandDescription = "One pair, " + highestCard + "s";
+
+            Rank = 8;
         }
     }
 
     public class HighCard : Hand
     {
         public string HighestCard { get; set; }
-        public const int Rank = 9;
 
         public HighCard(string highestCard)
         {
             HighestCard = highestCard;
 
             HandDescription = "High card, " + highestCard;
+
+            Rank = 9;
         }
     }
 }

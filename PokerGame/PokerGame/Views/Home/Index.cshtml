@@ -1,29 +1,29 @@
 ﻿@model PokerGame.Library.Game
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "";
 }
 <section class="featured">
     <div class="content-wrapper">
         <hgroup class="title">
-            <h1>@ViewBag.Title.</h1>
-            <h2>@ViewBag.Message</h2>
-            <ul class="players cf">@foreach (var player in Model.Players)
+            <div class="players cf">@foreach (var player in Model.Players)
                 {
-                    <li class="@player.Name.ToLower()">
+                    
+                    <div class="player cf @player.Name.ToLower()">
                         <div class="playerName">@player.Name - @player.BestFinalHand.HandDescription</div>
                         <span class="card @player.HoleCards[0].CardClass"></span>
                         <span class="card @player.HoleCards[1].CardClass"></span> 
-                    </li>
+                    </div>
                 }
-            </ul>
-            <ul class="community-cards cf">
-                <div>Communuity Cards</div>
-                @foreach (var card in Model.CommunityCards)
-                {
-                    <li><span class="card @card.CardClass"></span></li>
-                }
-            </ul>
+            </div>
+        <ul class="community-cards cf">
+            <div>Communuity Cards</div>
+            @foreach (var card in Model.CommunityCards)
+            {
+                <li><span class="card @card.CardClass"></span></li>
+            }
+        </ul>
+        <div class="winner">@Model.WinnerText</div>
         <hgroup>
     </div>
 </section>

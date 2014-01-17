@@ -8,7 +8,12 @@
     clear: both;
 }
 
-html {
+html 
+{
+    box-sizing: border-box;
+    ms-box-sizing: border-box;
+    webkit-box-sizing: border-box;
+    moz-box-sizing: border-box;
     background-color: #e2e2e2;
     margin: 0;
     padding: 0;
@@ -106,6 +111,7 @@ h5, h6 {
 .content-wrapper {
     margin: 0 auto;
     max-width: 960px;
+    height: 600px;
 }
 
 #body {
@@ -222,29 +228,34 @@ ul#menu {
     background-color: #fff;
 }
 
-    .featured .content-wrapper {
-        /*background: #2cba25; /* Old browsers */
-        /*background: -moz-linear-gradient(-45deg,  #2cba25 0%, #206012 29%, #427512 66%, #2cba25 100%); /* FF3.6+ */
-        /*background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#2cba25), color-stop(29%,#206012), color-stop(66%,#427512), color-stop(100%,#2cba25)); /* Chrome,Safari4+ */
-        /*background: -webkit-linear-gradient(-45deg,  #2cba25 0%,#206012 29%,#427512 66%,#2cba25 100%); /* Chrome10+,Safari5.1+ */
-        /*background: -o-linear-gradient(-45deg,  #2cba25 0%,#206012 29%,#427512 66%,#2cba25 100%); /* Opera 11.10+ */
-        /*background: -ms-linear-gradient(-45deg,  #2cba25 0%,#206012 29%,#427512 66%,#2cba25 100%); /* IE10+ */
-        /*background: linear-gradient(135deg,  #2cba25 0%,#206012 29%,#427512 66%,#2cba25 100%); /* W3C */
-        /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2cba25', endColorstr='#2cba25',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+.featured .content-wrapper {
+    background: #2cba25; /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  #2cba25 0%, #206012 29%, #427512 66%, #2cba25 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#2cba25), color-stop(29%,#206012), color-stop(66%,#427512), color-stop(100%,#2cba25)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(-45deg,  #2cba25 0%,#206012 29%,#427512 66%,#2cba25 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(-45deg,  #2cba25 0%,#206012 29%,#427512 66%,#2cba25 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(-45deg,  #2cba25 0%,#206012 29%,#427512 66%,#2cba25 100%); /* IE10+ */
+    background: linear-gradient(135deg,  #2cba25 0%,#206012 29%,#427512 66%,#2cba25 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2cba25', endColorstr='#2cba25',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
-        background: white;
-        color: #3e5667;
-        padding: 20px 40px 30px 40px;
-        border-radius: 50px;
-    }
+        
+    color: white;
+    padding: 20px 40px 30px 40px;
+    border-radius: 320px;
+    border: 10px solid brown;
+    box-sizing: border-box;
+    ms-box-sizing: border-box;
+    webkit-box-sizing: border-box;
+    moz-box-sizing: border-box;
+}
 
-        .featured hgroup.title h1, .featured hgroup.title h2 {
-            color: #fff;
-        }
+.featured hgroup.title h1, .featured hgroup.title h2 {
+    color: #fff;
+}
 
-        .featured p {
-            font-size: 1.1em;
-        }
+.featured p {
+    font-size: 1.1em;
+}
 
 /* page titles */
 hgroup.title {
@@ -771,12 +782,34 @@ tr.pager td {
 }
 
 .players {
-    width: 680px;
+    width: 900px;
     margin: 0 auto;    
+}
+
+.player {
+    width: 180px;
+    margin: 0 auto;       
+}
+
+.dave {
+    float: left;
+    margin-top: 60px;
+}
+
+.lee {
+    float: right;
+    margin-top: 60px;
+}
+
+.oli {
+    position: relative;
+    top: 270px;
 }
 
 .playerName {
     font-size: 0.8em;
+    color: white;
+    height: 30px;
 }
 
 .players li {
@@ -786,18 +819,29 @@ tr.pager td {
 
 .card {
     background: url(themes/base/images/cards.jpg) no-repeat;
-    width: 73px;
-    height: 97px;
+    width: 71px;
+    height: 96px;
     display: inline-block;
 }
 
 .community-cards {
     width: 381px;
     margin: 0 auto;
+    position: relative;
+    top: -120px;
 }
 
 .community-cards li {
     display: inline;
+}
+
+.winner {
+    position: relative;
+    top: -100px;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    font-size: 2em;
 }
 
 .clubs {
@@ -816,7 +860,7 @@ tr.pager td {
     background-position-y: -295px;
 }
 
-.Ace {
+.ace {
     background-position-x: -1px;
 }
 

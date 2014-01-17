@@ -204,6 +204,42 @@ namespace PokerGame.Tests.Controllers
             Assert.That(_game.Players[0].BestFinalHand, Is.InstanceOf<HighCard>());
         }
 
+        [Test]
+        public void Player_with_greatest_hand_ranking_wins()
+        {
+            _game.Players[0].HoleCards.Clear();
+            _game.Players[1].HoleCards.Clear();
+            _game.Players[2].HoleCards.Clear();
+            _game.Players[3].HoleCards.Clear();
+
+            //player one has straight flush
+            _game.Players[0].HoleCards.Add(new Card("Hearts", "Nine", "nine hearts", 9));
+            _game.Players[0].HoleCards.Add(new Card("Hearts", "Ten", "ten hearts", 10));
+
+            //player two has four of a kind
+            _game.Players[1].HoleCards.Add(new Card("Spades", "Jack", "jack spades", 11));
+            _game.Players[1].HoleCards.Add(new Card("Clubs", "Jack", "jack clubs", 11));
+
+            //player three has full house
+            _game.Players[2].HoleCards.Add(new Card("Hearts", "Four", "ace hearts", 1));
+            _game.Players[2].HoleCards.Add(new Card("Clubs", "Five", "ace clubs", 1));
+
+            //player four has flush
+            _game.Players[3].HoleCards.Add(new Card("Hearts", "Four", "four hearts", 4));
+            _game.Players[3].HoleCards.Add(new Card("Hearts", "Five", "five hearts", 5));
+
+            _game.CommunityCards.Clear();
+            _game.CommunityCards.Add(new Card("Hearts", "Jack", "jack hearts", 11));
+            _game.CommunityCards.Add(new Card("Hearts", "Queen", "queen hearts", 12));
+            _game.CommunityCards.Add(new Card("Hearts", "King", "king hearts", 13));
+            _game.CommunityCards.Add(new Card("Spades", "Jack", "jack spades", 11));
+            _game.CommunityCards.Add(new Card("Clubs", "Ace", "ace clubs", 1));
+
+
+            _game.GetPlayerFinalHands();
+            Assert.That(_game.Players[0].IsWinner, Is.True);
+        }
+
         private void CreateGame()
         {
             var players = new List<Player>
