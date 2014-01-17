@@ -10,13 +10,19 @@ namespace PokerGame.Library
         public string Name { get; private set; }
         public List<Card> HoleCards { get; set; } 
         public Hand FinalHand { get; set; } 
-        public Enums.Hands BestFinalHand { get; set; }
+        public Hand BestFinalHand { get; set; }
+        public List<Hand> Hands { get; set; } 
 
         public Player(string playerName, List<Card> holeCards)
         {
             Name = playerName;
             HoleCards = holeCards;
-            BestFinalHand = Enums.Hands.HighCard;
+            Hands = new List<Hand>();
+        }
+
+        public void GetBestFinalHand()
+        {
+            BestFinalHand = this.Hands.OrderBy(x => x.Rank).FirstOrDefault();
         }
     }
 }

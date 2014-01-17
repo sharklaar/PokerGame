@@ -775,6 +775,10 @@ tr.pager td {
     margin: 0 auto;    
 }
 
+.playerName {
+    font-size: 0.8em;
+}
+
 .players li {
     float: left;
     margin: 0 10px;

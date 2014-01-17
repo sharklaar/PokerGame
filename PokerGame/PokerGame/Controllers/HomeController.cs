@@ -16,15 +16,11 @@ namespace PokerGame.Controllers
         public ActionResult Index()
         {
             _game = CreateGame();
-
-            Deal();
-
-            GetPlayerFinalHands();
-
+            PlayGame();
             return View(_game);
         }
 
-        private Game CreateGame()
+        public Game CreateGame()
         {
             var players = new List<Player>
             {
@@ -36,148 +32,19 @@ namespace PokerGame.Controllers
 
             _deck = CreateDeck();
             Shuffle();
+
             return new Game(players, _deck);
         }
 
-        public void Deal()
+        public void PlayGame()
         {
-            for (var i = 0; i < 2; i++)
-            {
-                foreach (var player in _game.Players)
-                {
-                    player.HoleCards.Add(_game.Deck[0]);
-                    _game.Deck.Remove(_game.Deck[0]);
-                }
-            }
+            _game.Deal();
 
-            for (var i = 0; i < 5; i++)
-            {
-                _game.CommunityCards.Add(_game.Deck[0]);
-                _game.Deck.Remove(_game.Deck[0]);
-            }
+            _game.GetPlayerFinalHands();
         }
+      
 
-        public void GetPlayerFinalHands()
-        {
-            foreach (var player in _game.Players)
-            {
-                player.BestFinalHand = GetFinalHand(player);
-            }
-        }
-
-        private Enums.Hands GetFinalHand(Player player)
-        {
-            player.FinalHand = new Hand(player.HoleCards.ToList());
-            player.FinalHand.Cards.AddRange(_game.CommunityCards);
-
-            var counts = new Dictionary<string, int>();
-            foreach (var card in player.FinalHand.Cards)
-            {
-                int count;
-                if (counts.TryGetValue(card.Value, out count))
-                {
-                    counts[card.Value] = count + 1;
-                }
-                else
-                {
-                    counts.Add(card.Value, 1);
-                }
-            }
-
-            var mostPopularCardValue = GetMostPopularCardValue(counts, 0);
-            var secondMostPopularCardValue = GetMostPopularCardValue(counts, 1);
-
-            var mostPopularCardValueCount = player.FinalHand.Cards.Count(item => item.Value == mostPopularCardValue);
-            var secondMostPopularCardValueCount = player.FinalHand.Cards.Count(item => item.Value == secondMostPopularCardValue);
-
-            //if (PlayerHasStraightFlush())
-            //{
-            //    return Enums.Hands.StraightFlush;
-            //}
-
-            if (mostPopularCardValueCount >= 4)
-            {
-                return Enums.Hands.FourOfAKind;
-            }
-
-            if (mostPopularCardValueCount == 3 &&
-                (secondMostPopularCardValueCount == 2 || secondMostPopularCardValueCount == 3))
-            {
-                return Enums.Hands.FullHouse;
-            }
-
-            if (PlayerHasFlush(player))
-            {
-                return Enums.Hands.Flush;
-            }
-
-            if (PlayerHasStraight(player))
-            {
-                return Enums.Hands.Straight;
-            }
-
-            if (mostPopularCardValueCount == 3 && secondMostPopularCardValueCount <= 1)
-            {
-                return Enums.Hands.ThreeOfAKind;
-            }
-
-            if (mostPopularCardValueCount == 2 && secondMostPopularCardValueCount == 2)
-            {
-                return Enums.Hands.TwoPair;
-            }
-
-            if (mostPopularCardValueCount == 2 && secondMostPopularCardValueCount < 2)
-            {
-                return Enums.Hands.Pair;
-            }
-            return Enums.Hands.HighCard;
-        }
-
-        private bool PlayerHasStraight(Player player)
-        {
-            var numericValues = from card in player.FinalHand.Cards
-                select card.NumericValue;
-
-            for (int i = 0; i < numericValues.Count(); i++)
-            {
-                
-            }
-
-            return false;
-        }
-
-        private bool PlayerHasFlush(Player player)
-        {
-            var clubs = (from card in player.FinalHand.Cards
-                         where card.Suit == "Clubs"
-                         select card.Suit).Count();
-
-            var diamonds = (from card in player.FinalHand.Cards
-                            where card.Suit == "Diamonds"
-                            select card.Suit).Count();
-
-            var spades = (from card in player.FinalHand.Cards
-                          where card.Suit == "Spades"
-                          select card).Count();
-
-            var hearts = (from card in player.FinalHand.Cards
-                          where card.Suit == "Hearts"
-                          select card.Suit).Count();
-
-            if (clubs >= 5 || diamonds >= 5 || spades >= 5 || hearts >= 5)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        private string GetMostPopularCardValue(Dictionary<string, int> counts, int index)
-        {
-            var mostPopular = counts.Distinct().OrderByDescending(s => s.Value).ToList();
-            return mostPopular[index].Key;
-        }
-
-        private static List<Card> CreateDeck()
+        public List<Card> CreateDeck()
         {
             var suits = GetSuits();
 
@@ -197,6 +64,7 @@ namespace PokerGame.Controllers
 
             return deck;
         }
+
 
         private static string[,] GetSuits()
         {
