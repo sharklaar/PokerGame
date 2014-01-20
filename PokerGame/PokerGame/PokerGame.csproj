@@ -168,6 +168,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Library\Card.cs" />
+    <Compile Include="Library\CardValue.cs" />
     <Compile Include="Library\Enums.cs" />
     <Compile Include="Library\Game.cs" />
     <Compile Include="Library\Hand.cs" />

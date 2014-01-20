@@ -24,27 +24,27 @@ namespace PokerGame.Library
 
     public class StraightFlush : Hand
     {
-        public int HighestCard { get; set; }
+        public CardValue HighestCard { get; set; }
         public string Suit { get; set; }
-        
-        public StraightFlush(int highestCard, string suit)
+
+        public StraightFlush(CardValue highestCard, string suit)
         {
             HighestCard = highestCard;
             Suit = suit;
-            HandDescription = "Straight flush, " + suit + ", " + highestCard + " high";
+            HandDescription = "Straight flush, " + suit + ", " + highestCard.StringValue + " high";
             Rank = 1;
         }
     }
 
     public class FourOfAKind : Hand
     {
-        public string HighCard { get; set; }
+        public CardValue HighCard { get; set; }
 
-        public FourOfAKind(string highCard)
+        public FourOfAKind(CardValue highCard)
         {
             HighCard = highCard;
 
-            HandDescription = "Four of a kind, " + highCard;
+            HandDescription = "Four of a kind, " + highCard.StringValue;
 
             Rank = 2;
         }
@@ -52,15 +52,15 @@ namespace PokerGame.Library
 
     public class FullHouse : Hand
     {
-        public string Three { get; set; }
-        public string Two { get; set; }
+        public CardValue Three { get; set; }
+        public CardValue Two { get; set; }
 
-        public FullHouse(string threeCard, string twoCard)
+        public FullHouse(CardValue threeCard, CardValue twoCard)
         {
             Two = twoCard;
             Three = threeCard;
 
-            HandDescription = "Full house, " + threeCard + "s over " + twoCard + "s";
+            HandDescription = "Full house, " + threeCard.StringValue + "s over " + twoCard.StringValue + "s";
 
             Rank = 3;
         }
@@ -68,15 +68,15 @@ namespace PokerGame.Library
 
     public class Flush : Hand
     {
-        public Card HighestCard { get; set; }
+        public CardValue HighestCard { get; set; }
         public string Suit { get; set; }
 
-        public Flush(Card highestCard, string suit)
+        public Flush(CardValue highestCard, string suit)
         {
             HighestCard = highestCard;
             Suit = suit;
 
-            HandDescription = "Flush, " + highestCard.Value + " high, " + suit;
+            HandDescription = "Flush, " + highestCard.StringValue + " high, " + suit;
 
             Rank = 4;
         }
@@ -84,12 +84,12 @@ namespace PokerGame.Library
 
     public class Straight : Hand
     {
-        public int HighestCard { get; set; }
+        public CardValue HighestCard { get; set; }
 
-        public Straight(int highestCard)
+        public Straight(CardValue highestCard)
         {
             HighestCard = highestCard;
-            HandDescription = "Straight, " + highestCard + " high";
+            HandDescription = "Straight, " + highestCard.StringValue + " high";
 
             Rank = 5;
         }
@@ -97,13 +97,13 @@ namespace PokerGame.Library
 
     public class ThreeOfAKind : Hand
     {
-        public string HighestCard { get; set; }
+        public CardValue HighestCard { get; set; }
 
-        public ThreeOfAKind(string highestCard)
+        public ThreeOfAKind(CardValue highestCard)
         {
             HighestCard = highestCard;
 
-            HandDescription = "Three of a kind, " + highestCard + "s";
+            HandDescription = "Three of a kind, " + highestCard.StringValue + "s";
 
             Rank = 6;
         }
@@ -111,15 +111,15 @@ namespace PokerGame.Library
 
     public class TwoPair : Hand
     {
-        public string FirstPair { get; set; }
-        public string SecondPair { get; set; }
+        public CardValue FirstPair { get; set; }
+        public CardValue SecondPair { get; set; }
 
-        public TwoPair(string firstPair, string secondPair)
+        public TwoPair(CardValue firstPair, CardValue secondPair)
         {
             FirstPair = firstPair;
             SecondPair = secondPair;
 
-            HandDescription = "Two pair, " + firstPair + "s and " + secondPair + "s";
+            HandDescription = "Two pair, " + firstPair.StringValue + "s and " + secondPair.StringValue + "s";
 
             Rank = 7;
         }
@@ -127,13 +127,13 @@ namespace PokerGame.Library
 
     public class Pair : Hand
     {
-        public string HighestCard { get; set; }
+        public CardValue HighestCard { get; set; }
 
-        public Pair(string highestCard)
+        public Pair(CardValue highestCard)
         {
             HighestCard = highestCard;
 
-            HandDescription = "One pair, " + highestCard + "s";
+            HandDescription = "One pair, " + highestCard.StringValue + "s";
 
             Rank = 8;
         }
@@ -141,13 +141,13 @@ namespace PokerGame.Library
 
     public class HighCard : Hand
     {
-        public string HighestCard { get; set; }
+        public CardValue HighestCard { get; set; }
 
-        public HighCard(string highestCard)
+        public HighCard(CardValue highestCard)
         {
             HighestCard = highestCard;
 
-            HandDescription = "High card, " + highestCard;
+            HandDescription = "High card, " + highestCard.StringValue;
 
             Rank = 9;
         }

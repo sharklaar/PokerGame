@@ -49,3 +49,5 @@ C:\dev\PokerGame\PokerGame\PokerGame\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
 C:\dev\PokerGame\PokerGame\PokerGame\obj\Debug\PokerGame.csprojResolveAssemblyReference.cache
 C:\dev\PokerGame\PokerGame\PokerGame\obj\Debug\PokerGame.dll
 C:\dev\PokerGame\PokerGame\PokerGame\obj\Debug\PokerGame.pdb
+C:\dev\PokerGame\PokerGame\PokerGame\bin\Newtonsoft.Json.dll
+C:\dev\PokerGame\PokerGame\PokerGame\bin\Newtonsoft.Json.xml

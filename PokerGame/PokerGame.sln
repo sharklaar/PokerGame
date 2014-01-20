@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+# Visual Web Developer Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerGame", "PokerGame\PokerGame.csproj", "{ED99AA6C-400E-40CC-804F-D61A3B39A7AF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerGame.Tests", "PokerGame.Tests\PokerGame.Tests.csproj", "{9E1789EC-CFE8-49B1-9DF6-9FEF63EE07FF}"

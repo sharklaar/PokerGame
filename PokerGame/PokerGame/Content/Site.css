@@ -844,71 +844,71 @@ tr.pager td {
     font-size: 2em;
 }
 
-.clubs {
+.Clubs {
     background-position-y: -1px;
 }
 
-.spades {
+.Spades {
     background-position-y: -99px;
 }
 
-.hearts {
+.Hearts {
     background-position-y: -197px;
 }
 
-.diamonds {
+.Diamonds {
     background-position-y: -295px;
 }
 
-.ace {
+.Ace {
     background-position-x: -1px;
 }
 
-.deuce {
+.Deuce {
     background-position-x: -74px;
 }
 
-.three {
+.Three {
     background-position-x: -147px;
 }
 
-.four {
+.Four {
     background-position-x: -220px;
 }
 
-.five {
+.Five {
     background-position-x: -293px;
 }
 
-.six {
+.Six {
     background-position-x: -366px;
 }
 
-.seven {
+.Seven {
     background-position-x: -439px;
 }
 
-.eight {
+.Eight {
     background-position-x: -512px;
 }
 
-.nine {
+.Nine {
     background-position-x: -585px;
 }
 
-.ten {
+.Ten {
     background-position-x: -658px;
 }
 
-.jack {
+.Jack {
     background-position-x: -731px;
 }
 
-.queen {
+.Queen {
     background-position-x: -804px;
 }
 
-.king {
+.King {
     background-position-x: -877px;
 }
 

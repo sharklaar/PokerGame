@@ -53,14 +53,18 @@ namespace PokerGame.Library
             {
                 var diff = playersInOrderOfHandRank[i + 1].BestFinalHand.Rank - playersInOrderOfHandRank[i].BestFinalHand.Rank;
 
-                if (diff == 1)
+                if (diff == 0)
                 {
                     winners.Add(playersInOrderOfHandRank[i+1]);
                 }
                 else
                 {
+                    i = playersInOrderOfHandRank.Count() - 1;
                 }
             }
+
+            //if (winners.Count > 1)
+            //    winners = CheckWinnersListForHigherHandOfSameRank(winners);
 
             if (winners.Count == 1)
             {
@@ -70,54 +74,80 @@ namespace PokerGame.Library
             {
                 var winnerString = string.Empty;
 
-                foreach (var player in winners)
+                for (var i = 0; i < winners.Count; i++)
                 {
-                    winnerString = winnerString + ", " + player.Name;
+                    if (i == 0)
+                    {
+                        winnerString = winners[i].Name;
+                    }
+                    else if (i == winners.Count - 1)
+                    {
+                        winnerString = winnerString + " and " + winners[i].Name;
+                    }
+                    else
+                    {
+                        winnerString = winnerString + ", " + winners[i].Name;
+                    }                    
                 }
 
                 WinnerText = winnerString + " share the pot with " + winners[0].BestFinalHand.HandDescription;
             }
         }
 
+        //private List<Player> CheckWinnersListForHigherHandOfSameRank(List<Player> winnerList)
+        //{
+        //    var finalWinnerList = new List<Player>();
+
+        //    var winningHandType = winnerList[0].BestFinalHand;
+
+        //    if (winningHandType is Pair)
+        //    {
+        //        var winnersWithHighCard = new Dictionary<Player, int>();
+        //        foreach (var winner in winnerList)
+        //        {
+        //            var playerHand =winner.BestFinalHand as Pair;
+        //            var highCard = playerHand.HighestCard.NumericValue;
+        //            winnersWithHighCard.Add(winner, highCard);
+        //        }   
+        //    }
+
+        //    return new List<Player>();
+        //}
+
         private Hand GetFinalHand(Player player)
         {
             player.FinalHand = new Hand(player.HoleCards.ToList());
             player.FinalHand.Cards.AddRange(CommunityCards);
 
-            var counts = new Dictionary<int, int>();
+            var counts = new Dictionary<CardValue, int>();
             foreach (var card in player.FinalHand.Cards)
             {
                 int count;
-                if (counts.TryGetValue(card.NumericValue, out count))
+                if (counts.Any(x => x.Key.NumericValue == card.CardValue.NumericValue))
                 {
-                    counts[card.NumericValue] = count + 1;
+                    count = counts.Where(x => x.Key.NumericValue == card.CardValue.NumericValue).Count();
+                    counts[card.CardValue] = count + 1;
                 }
                 else
                 {
-                    counts.Add(card.NumericValue, 1);
+                    counts.Add(card.CardValue, 1);
                 }
             }
 
-            var highestCard = player.FinalHand.Cards.OrderByDescending(x => x.NumericValue).FirstOrDefault();
+            var highestCard = player.FinalHand.Cards.OrderByDescending(x => x.CardValue.NumericValue).FirstOrDefault();
 
-            var mostPopularCardNumericValue = GetMostPopularCardValue(counts, 0);
-            var secondMostPopularCardNumericValue = GetMostPopularCardValue(counts, 1);
+            var mostPopularCardValue = GetMostPopularCardValue(counts, 0);
 
-            var mostPopularCardValue = (from card in player.FinalHand.Cards
-                                        group card by card.Value
-                                            into g
-                                            select new { Value = g.Key, Frequency = g.Count() }).OrderByDescending(g => g.Frequency).First().Value;
+            foreach (var count in counts)
+            {
+                if (count.Key.NumericValue == mostPopularCardValue.NumericValue)
+                    counts.Remove(mostPopularCardValue);
+            }
 
-            var secondMostPopularCardValue = (from card in player.FinalHand.Cards
-                                              group card by card.Value
-                                                  into g
-                                                  select new { Value = g.Key, Frequency = g.Count() }).OrderByDescending(g => g.Frequency).Skip(1).First().Value;
+            var secondMostPopularCardValue = GetMostPopularCardValue(counts, 1);
 
-            var mostPopularCardValueCount = player.FinalHand.Cards.Count(item => item.NumericValue == mostPopularCardNumericValue);
-            var secondMostPopularCardValueCount = player.FinalHand.Cards.Count(item => item.NumericValue == secondMostPopularCardNumericValue);
-
-            if (mostPopularCardValue == null)
-                if (highestCard != null) return new HighCard(highestCard.Value);
+            var mostPopularCardValueCount = player.FinalHand.Cards.Count(item => item.CardValue.NumericValue == mostPopularCardValue.NumericValue);
+            var secondMostPopularCardValueCount = player.FinalHand.Cards.Count(item => item.CardValue.NumericValue == secondMostPopularCardValue.NumericValue);
 
             var straightFlushHand = PlayerHasStraightFlush(player) as StraightFlush;
             if (straightFlushHand != null)
@@ -160,7 +190,7 @@ namespace PokerGame.Library
             {
                 return new Pair(mostPopularCardValue);
             }
-            return new HighCard(highestCard.Value);
+            return new HighCard(highestCard.CardValue);
         }
 
         private Hand PlayerHasStraightFlush(Player player)
@@ -193,19 +223,19 @@ namespace PokerGame.Library
 
         private Straight PlayerHasStraight(Hand hand)
         {
-            var numericValues = (from card in hand.Cards
-                                 select card.NumericValue).ToList();
+            var cardValues = (from card in hand.Cards
+                                 select card.CardValue).ToList();
 
             var longestSequence = 0;
-            var highestCard = 0;
+            CardValue highestCard = null;
 
-            var sortedInput = numericValues.OrderBy(x => x).ToList();
+            var sortedInput = cardValues.OrderBy(x => x.NumericValue).ToList();
 
             var diffArray = new List<int>();
 
             for (var i = 0; i < sortedInput.Count() - 1; i++)
             {
-                var diff = sortedInput[i + 1] - sortedInput[i];
+                var diff = sortedInput[i + 1].NumericValue - sortedInput[i].NumericValue;
                 diffArray.Add(diff);
 
                 if (diff == 1)
@@ -249,7 +279,7 @@ namespace PokerGame.Library
                          select card);
             if (clubs.Count() >= 5)
             {
-                var highestClub = clubs.OrderByDescending(x => x.NumericValue).FirstOrDefault();
+                var highestClub = clubs.OrderByDescending(x => x.CardValue.NumericValue).FirstOrDefault().CardValue;
 
                 var flush = new Flush(highestClub, "Clubs") { Cards = new List<Card>() }; 
 
@@ -266,7 +296,7 @@ namespace PokerGame.Library
                             select card);
             if (diamonds.Count() >= 5)
             {
-                var highestDiamond = diamonds.OrderByDescending(x => x.NumericValue).FirstOrDefault();
+                var highestDiamond = diamonds.OrderByDescending(x => x.CardValue.NumericValue).FirstOrDefault().CardValue;
 
                 var flush = new Flush(highestDiamond, "Diamonds") { Cards = new List<Card>() }; 
 
@@ -282,7 +312,7 @@ namespace PokerGame.Library
                           select card);
             if (spades.Count() >= 5)
             {
-                var highestSpade = spades.OrderByDescending(x => x.NumericValue).FirstOrDefault();
+                var highestSpade = spades.OrderByDescending(x => x.CardValue.NumericValue).FirstOrDefault().CardValue;
                 var flush = new Flush(highestSpade, "Spades") { Cards = new List<Card>() };
                 
                 foreach (var card in spades)
@@ -297,7 +327,7 @@ namespace PokerGame.Library
                           select card);
             if (hearts.Count() >= 5)
             {
-                var highestHeart = hearts.OrderByDescending(x => x.NumericValue).FirstOrDefault();
+                var highestHeart = hearts.OrderByDescending(x => x.CardValue.NumericValue).FirstOrDefault().CardValue;
                 var flush = new Flush(highestHeart, "Hearts") {Cards = new List<Card>()};
 
                 foreach (var card in hearts)
@@ -309,7 +339,7 @@ namespace PokerGame.Library
             return null;
         }
 
-        private int GetMostPopularCardValue(Dictionary<int, int> counts, int index)
+        private CardValue GetMostPopularCardValue(Dictionary<CardValue, int> counts, int index)
         {
             var mostPopular = counts.Distinct().OrderByDescending(s => s.Value).ToList();
             return mostPopular[index].Key;

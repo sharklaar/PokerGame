@@ -57,7 +57,7 @@ namespace PokerGame.Controllers
                 for (var s = 0; s < suits.GetLength(0); s++)
                 {
                     var cardClass = string.Concat(currentCard.Key, " ", suits[s, 0]);
-                    var card = new Card(suits[s, 0], currentCard.Key, cardClass, currentCard.Value);
+                    var card = new Card(suits[s, 0], new CardValue(currentCard.Key, currentCard.Value));
                     deck.Add(card);
                 }
             }
